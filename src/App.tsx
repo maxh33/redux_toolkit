@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Header from './components/Header'
 import Produtos from './containers/Produtos'
 
 import { GlobalStyle } from './styles'
+import { RootState } from '@reduxjs/toolkit/query'
+import { useGetProdutosQuery } from './services/api'
+import { addToCart } from './slices/cartSlice'
+import { toggleFavorite } from './slices/favoritesSlice'
 
 export type Produto = {
   id: number
@@ -12,31 +16,21 @@ export type Produto = {
 }
 
 function App() {
-  const [produtos, setProdutos] = useState<Produto[]>([])
-  const [carrinho, setCarrinho] = useState<Produto[]>([])
-  const [favoritos, setFavoritos] = useState<Produto[]>([])
+  const dispatch = useDispatch()
+  const { data: produtos = [] } = useGetProdutosQuery()
+  const carrinho = useSelector((state: RootState) => state.cart.items)
+  const favoritos = useSelector((state: RootState) => state.favorites.items)
 
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/ebac_sports')
-      .then((res) => res.json())
-      .then((res) => setProdutos(res))
-  }, [])
-
-  function adicionarAoCarrinho(produto: Produto) {
+  const adicionarAoCarrinho = (produto: Produto) => {
     if (carrinho.find((p) => p.id === produto.id)) {
       alert('Item já adicionado')
     } else {
-      setCarrinho([...carrinho, produto])
+      dispatch(addToCart(produto))
     }
   }
 
-  function favoritar(produto: Produto) {
-    if (favoritos.find((p) => p.id === produto.id)) {
-      const favoritosSemProduto = favoritos.filter((p) => p.id !== produto.id)
-      setFavoritos(favoritosSemProduto)
-    } else {
-      setFavoritos([...favoritos, produto])
-    }
+  const favoritar = (produto: Produto) => {
+    dispatch(toggleFavorite(produto))
   }
 
   return (
