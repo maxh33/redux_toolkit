@@ -18,7 +18,7 @@ const Header = ({ itensNoCarrinho, favoritos }: Props) => {
 
   return (
     <S.Header>
-      <h1>EBAC Sports</h1>
+      <h1>MAX Sports</h1>
       <div>
         <span>{favoritos.length} favoritos</span>
         <img src={cesta} />
