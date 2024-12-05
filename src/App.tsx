@@ -3,7 +3,7 @@ import Header from './components/Header'
 import Produtos from './containers/Produtos'
 
 import { GlobalStyle } from './styles'
-import { RootState } from '@reduxjs/toolkit/query'
+import { RootState } from './store'
 import { useGetProdutosQuery } from './services/api'
 import { addToCart } from './slices/cartSlice'
 import { toggleFavorite } from './slices/favoritesSlice'
