@@ -1,3 +1,36 @@
+# Purpose
+
+The purpose of this project is practice the implementation:
+- Redux Toolkit for state management
+- RTK Query for data fetching
+- `useSelector` for accessing the Redux state
+- `useDispatch` for dispatching actions
+- Slices for managing the cart state
+- Props for component communication
+
+## Technologies Used
+
+- React
+- Redux Toolkit
+- RTK Query
+- TypeScript
+- Styled-components
+
+## Features
+
+- Add products to the cart
+- Display total items and total price in the cart
+- Fetch products from a mock API using RTK Query
+- Responsive design
+
+## Demo
+
+![Demo GIF](https://github.com/maxh33/redux_toolkit/blob/main/src/assets/maxSports.gif)
+
+## Deployment
+
+The project is deployed on Vercel. You can view it here: [My Redux Project](https://redux-toolkit-gamma-lyart.vercel.app/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
